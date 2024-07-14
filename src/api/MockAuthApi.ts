@@ -1,7 +1,7 @@
 import { IAuthApi } from "./interfaces/IAuthApi.ts";
-import { LoginRequest } from "../core/auth/requests/loginRequest.ts";
-import { User } from "../core/auth/models/user.ts";
-import { SignUpRequest } from "../core/auth/requests/signUpRequest.ts";
+import { Login } from "../types/auth/login.ts";
+import { User } from "../types/auth/user.ts";
+import { SignUp } from "../types/auth/signUp.ts";
 
 export class MockAuthApi implements IAuthApi {
 	private users: (User & { password: string })[] = [];
@@ -15,7 +15,7 @@ export class MockAuthApi implements IAuthApi {
 		});
 	}
 
-	signUp(signUpRequest: SignUpRequest) {
+	signUp(signUpRequest: SignUp) {
 		if (!!this.users.find(user => user.email === signUpRequest.email)) {
 			throw new Error("User with this email already exists");
 		}
@@ -38,7 +38,7 @@ export class MockAuthApi implements IAuthApi {
 		};
 	};
 
-	login(loginRequest: LoginRequest) {
+	login(loginRequest: Login) {
 		 const userInDB = this.users.find(user => user.email === loginRequest.email);
 
 		 if (!userInDB) {

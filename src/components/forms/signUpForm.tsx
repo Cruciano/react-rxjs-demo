@@ -1,11 +1,12 @@
 import { Formik, Form } from "formik";
-import { SignUpRequest } from "../../core/auth/requests/signUpRequest.ts";
+import { SignUp } from "../../types/auth/signUp.ts";
 import { validationSchemaSignUp } from "../../shared/validationSchemas/validationSchemaSignUp.ts";
 import TextInput from "../ui/formElements/TextInput.tsx";
 import PasswordInput from "../ui/formElements/PasswordInput.tsx";
 import Button from "../ui/button.tsx";
+import { useAuthService } from "../../services/useAuthService.ts";
 
-const initialValues: SignUpRequest = {
+const initialValues: SignUp = {
 	name: '',
 	email: '',
 	password: '',
@@ -13,15 +14,18 @@ const initialValues: SignUpRequest = {
 };
 
 const SignUpForm = () => {
-	const onSubmit = () => {
-		console.log('submit')
+	const { signUp, state } = useAuthService();
+	const { error: signUpError } = state;
+
+	const submitHandler = (values: SignUp) => {
+		signUp(values);
 	}
 
 	return (
 		<Formik
 			initialValues={initialValues}
 			validationSchema={validationSchemaSignUp}
-			onSubmit={onSubmit}
+			onSubmit={submitHandler}
 		>
 			{({ errors, touched }) => (
 				<Form
@@ -30,6 +34,11 @@ const SignUpForm = () => {
 					<h1 className="text-center text-xl md:text-2xl font-bold mb-2.5">
 						Sign Up
 					</h1>
+					{signUpError && (
+						<p className="text-rose-500">
+							signUpError
+						</p>
+					)}
 					<TextInput
 						title="Your name"
 						name="name"

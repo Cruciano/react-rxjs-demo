@@ -1,8 +1,8 @@
 import * as Yup from "yup";
-import { LoginRequest } from "../../core/auth/requests/loginRequest.ts";
+import { SignUp } from "../../types/auth/signUp.ts";
 
-export const validationSchemaSignUp: Yup.ObjectSchema<LoginRequest> = Yup.object().shape({
-	firstName: Yup.string().required("Required"),
+export const validationSchemaSignUp: Yup.ObjectSchema<SignUp> = Yup.object().shape({
+	name: Yup.string().required("Required"),
 	email: Yup.string().email("Email is not valid").required("Required"),
 	password: Yup
 		.string()

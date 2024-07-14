@@ -1,9 +1,9 @@
-import { User } from "../../core/auth/models/user.ts";
-import { LoginRequest } from "../../core/auth/requests/loginRequest.ts";
-import { SignUpRequest } from "../../core/auth/requests/signUpRequest.ts";
+import { User } from "../../types/auth/user.ts";
+import { Login } from "../../types/auth/login.ts";
+import { SignUp } from "../../types/auth/signUp.ts";
 
 export interface IAuthApi {
-	login(loginRequest: LoginRequest): User;
+	login(loginRequest: Login): User;
 
-	signUp(signUpRequest: SignUpRequest): User;
+	signUp(signUpRequest: SignUp): User;
 }
