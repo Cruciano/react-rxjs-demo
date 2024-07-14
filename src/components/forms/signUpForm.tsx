@@ -1,11 +1,11 @@
 import { Formik, Form } from "formik";
-import { SignUpFormData } from "../../types/formData/signUpFormData.ts";
+import { SignUpRequest } from "../../core/auth/requests/signUpRequest.ts";
 import { validationSchemaSignUp } from "../../shared/validationSchemas/validationSchemaSignUp.ts";
 import TextInput from "../ui/formElements/TextInput.tsx";
 import PasswordInput from "../ui/formElements/PasswordInput.tsx";
 import Button from "../ui/button.tsx";
 
-const initialValues: SignUpFormData = {
+const initialValues: SignUpRequest = {
 	name: '',
 	email: '',
 	password: '',

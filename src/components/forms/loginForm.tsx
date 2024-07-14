@@ -1,11 +1,11 @@
 import { Formik, Form } from "formik";
-import { LoginFormData } from "../../types/formData/loginFormData.ts";
+import { LoginRequest } from "../../core/auth/requests/loginRequest.ts";
 import { validationSchemaLogin } from "../../shared/validationSchemas/validationSchemaLogin.ts";
 import TextInput from "../ui/formElements/TextInput.tsx";
 import PasswordInput from "../ui/formElements/PasswordInput.tsx";
 import Button from "../ui/button.tsx";
 
-const initialValues: LoginFormData = {
+const initialValues: LoginRequest = {
 	email: '',
 	password: '',
 };
