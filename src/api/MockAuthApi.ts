@@ -17,9 +17,13 @@ export class MockAuthApi implements IAuthApi {
 		});
 	}
 
-	signUp(signUpRequest: SignUp) {
+	signUp(signUpRequest: SignUp): User {
 		if (!!this.users.find(user => user.email === signUpRequest.email)) {
 			throw new Error("User with this email already exists");
+		}
+
+		if (signUpRequest.password !== signUpRequest.confirmPassword) {
+			throw new Error("Passwords don't match");
 		}
 
 		const lastUser = this.users.length > 0 ? this.users[this.users.length - 1] : null;
@@ -40,7 +44,7 @@ export class MockAuthApi implements IAuthApi {
 		};
 	};
 
-	login(loginRequest: Login) {
+	login(loginRequest: Login): User {
 		 const userInDB = this.users.find(user => user.email === loginRequest.email);
 
 		 if (!userInDB) {

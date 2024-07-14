@@ -14,10 +14,20 @@ npm install
 npm run start
 ```
 
-With yarh:
+With yarn:
 
 ```
 yarn install
 
 yarn start
+```
+
+To run tests use the following command:
+
+```
+npm run test
+```
+or
+```
+yarn test
 ```
