@@ -4,6 +4,8 @@ This is a demo of a React project with RxJS as state manager. Written in Typescr
 
 Project consists of a simple authorization using a mock API, and a home page.
 
+The project is hosted on Netlify: https://react-rxjs-demo.netlify.app/
+
 ## Usage
 
 If you want to run the project on your local environment you can run:
