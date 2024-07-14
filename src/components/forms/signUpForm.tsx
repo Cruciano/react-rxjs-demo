@@ -5,6 +5,7 @@ import TextInput from "../ui/formElements/TextInput.tsx";
 import PasswordInput from "../ui/formElements/PasswordInput.tsx";
 import Button from "../ui/button.tsx";
 import { useAuthService } from "../../core/services/useAuthService.ts";
+import {Spinner} from "@radix-ui/themes";
 
 const initialValues: SignUp = {
 	name: '',
@@ -15,7 +16,7 @@ const initialValues: SignUp = {
 
 const SignUpForm = () => {
 	const { signUp, state } = useAuthService();
-	const { error: signUpError } = state;
+	const { isLoading, error: signUpError } = state;
 
 	const submitHandler = (values: SignUp) => {
 		signUp(values);
@@ -65,7 +66,14 @@ const SignUpForm = () => {
 						error={errors.confirmPassword}
 						touched={touched.confirmPassword}
 					/>
-					<Button title="Sign Up" type="submit" />
+					<div className="relative">
+						<Button title="Sign up" type="submit"/>
+						{isLoading && (
+							<div className="absolute top-4 -right-8">
+								<Spinner size="3"/>
+							</div>
+						)}
+					</div>
 				</Form>
 			)}
 		</Formik>
