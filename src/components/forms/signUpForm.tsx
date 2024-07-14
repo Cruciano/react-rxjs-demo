@@ -4,7 +4,7 @@ import { validationSchemaSignUp } from "../../shared/validationSchemas/validatio
 import TextInput from "../ui/formElements/TextInput.tsx";
 import PasswordInput from "../ui/formElements/PasswordInput.tsx";
 import Button from "../ui/button.tsx";
-import { useAuthService } from "../../services/useAuthService.ts";
+import { useAuthService } from "../../core/services/useAuthService.ts";
 
 const initialValues: SignUp = {
 	name: '',

@@ -2,7 +2,9 @@ import { IAuthApi } from "./interfaces/IAuthApi.ts";
 import { Login } from "../types/auth/login.ts";
 import { User } from "../types/auth/user.ts";
 import { SignUp } from "../types/auth/signUp.ts";
+import { singleton } from "tsyringe";
 
+@singleton()
 export class MockAuthApi implements IAuthApi {
 	private users: (User & { password: string })[] = [];
 

@@ -1,25 +1,16 @@
-import { IAuthApi } from "../api/interfaces/IAuthApi.ts";
-import { AuthObservable } from "./observables/AuthObservable.ts";
-import { Login } from "../types/auth/login.ts";
-import { SignUp } from "../types/auth/signUp.ts";
-import { User } from "../types/auth/user.ts";
-import { useObservableState } from "../hooks/useObservableState.ts";
-import { MockAuthApi } from "../api/MockAuthApi.ts";
-import { BehaviorSubject } from "rxjs";
-import { AuthState } from "../types/auth/authState.ts";
+import { container } from "tsyringe";
+import { IAuthApi } from "../../api/interfaces/IAuthApi.ts";
+import { Login } from "../../types/auth/login.ts";
+import { SignUp } from "../../types/auth/signUp.ts";
+import { User } from "../../types/auth/user.ts";
+import { useObservableState } from "../../hooks/useObservableState.ts";
+import { MockAuthApi } from "../../api/MockAuthApi.ts";
 import { IAuthObservable } from "./interfaces/IAuthObservable.ts";
-
-const initialState: AuthState = {
-	user: null,
-	isLoading: false,
-	error: '',
-}
-
-const loginSubject = new BehaviorSubject<AuthState>(initialState);
+import { AuthObservable } from "./observables/AuthObservable.ts";
 
 export const useAuthService = () => {
-	const authApi: IAuthApi = new MockAuthApi();
-	const authObservable: IAuthObservable = new AuthObservable(loginSubject);
+	const authApi: IAuthApi = container.resolve(MockAuthApi);
+	const authObservable: IAuthObservable = container.resolve(AuthObservable);
 
 	const state = useObservableState(authObservable.getObservable());
 
@@ -49,7 +40,7 @@ export const useAuthService = () => {
 
 	const logOut = () => {
 		authObservable.setUser(null);
-	}
+	};
 
 	return {
 		login,

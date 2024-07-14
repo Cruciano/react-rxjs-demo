@@ -1,7 +1,7 @@
 import { FC, useEffect } from "react";
 import { LayoutProps } from "../../types/props/layout.ts";
 import { useNavigate } from "@tanstack/react-router";
-import { useAuthService } from "../../services/useAuthService.ts";
+import { useAuthService } from "../../core/services/useAuthService.ts";
 
 const AuthPageLayout: FC<LayoutProps> = ({ children }) => {
 	const navigate = useNavigate();

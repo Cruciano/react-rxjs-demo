@@ -1,9 +1,11 @@
-import { AuthState } from "../../types/auth/authState.ts";
-import { AuthPayload } from "../../types/auth/authPayload.ts";
-import { User } from "../../types/auth/user.ts";
+import { AuthState } from "../../../types/auth/authState.ts";
+import { AuthPayload } from "../../../types/auth/authPayload.ts";
+import { User } from "../../../types/auth/user.ts";
 import { BehaviorSubject } from "rxjs";
 import { IAuthObservable } from "../interfaces/IAuthObservable.ts";
+import { singleton } from "tsyringe";
 
+@singleton()
 export class AuthObservable implements IAuthObservable {
 	private readonly loginSubject: BehaviorSubject<AuthState>;
 

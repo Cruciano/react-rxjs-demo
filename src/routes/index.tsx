@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { createFileRoute, useNavigate } from '@tanstack/react-router'
-import { useAuthService } from "../services/useAuthService.ts";
+import { useAuthService } from "../core/services/useAuthService.ts";
 import HeroImage from '../assets/images/cool-cat.jpg';
 import { Flex } from "@radix-ui/themes";
 
